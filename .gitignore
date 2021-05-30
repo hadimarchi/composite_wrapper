@@ -5,6 +5,11 @@ __pycache__/
 
 # C extensions
 *.so
+# Outputs
+*_granules*/
+
+# Testing
+  *test*
 
 # Distribution / packaging
 .Python
