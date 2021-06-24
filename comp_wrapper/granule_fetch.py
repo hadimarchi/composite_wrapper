@@ -1,7 +1,8 @@
-from .cmd_parser import composite_options
 from datetime import date
 import json
 import requests
+from .cmd_parser import composite_options
+from .log import logger
 
 
 def fetch_granules():
@@ -9,9 +10,9 @@ def fetch_granules():
     granules = requests.get(search_url).json()[0]
     granule_names = get_granule_names(granules)
 
-    print("Found {granule_count} granules".format(granule_count=len(granule_names)))
     if granule_names == []:
         raise Exception("No granules")
+    logger.info("Found {granule_count} granules".format(granule_count=len(granule_names)))
     return granule_names
 
 
@@ -40,13 +41,15 @@ def build_search_url():
         date_range=fetch_url_date_range,
         polarization=fetch_url_polarization
         )
-    print(fetch_url)
+    logger.info("Fetch url is {fetch_url}".format(fetch_url=fetch_url))
     return fetch_url
+
 
 def get_granule_names(granule_list):
     granule_names = []
     for granule in granule_list:
         name = granule["granuleName"]
+        logger.info("Acquired granule {name}".format(name=name))
         granule_names.append(name)
 
     return granule_names

@@ -11,5 +11,6 @@ composite_options_parser.add_argument('--polarization', type=str, choices=["vv",
 composite_options_parser.add_argument('--cleanup', type=str, choices=["y", "n"], default="n", help="remove original granules")
 composite_options_parser.add_argument('--start_date', type=str, help="start date for granule search in the format yyyy-mm-dd")
 composite_options_parser.add_argument('--end_date', type=str, help="end date for granule search in the format yyyy-mm-dd")
-
+composite_options_parser.add_argument('--verbose', action='store_true', help="if this flag is added the logging level will be set at INFO")
+composite_options_parser.add_argument('--cleanup', action='store_true', help="if this flag is added the granules used for the composite will be deleted after the composite is made")
 composite_options = composite_options_parser.parse_args()

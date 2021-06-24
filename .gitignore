@@ -9,7 +9,8 @@ __pycache__/
 *_granules*/
 
 # Testing
-  *test*
+test_run.sh
+sys
 
 # Distribution / packaging
 .Python
