@@ -10,8 +10,8 @@ def fetch_granules():
     granules = requests.get(search_url).json()[0]
     granule_names = get_granule_names(granules)
 
-    if granule_names == []:
-        raise Exception("No granules")
+    if len(granule_names) == 0:
+        raise Exception("No granules found")
     logger.info("Found {granule_count} granules".format(granule_count=len(granule_names)))
     return granule_names
 
@@ -19,7 +19,7 @@ def fetch_granules():
 def build_search_url():
     min_bbox_bound = composite_options.lon_lat_minimum
     max_bbox_bound = composite_options.lon_lat_maximum
-
+    
     fetch_url_bbox = "bbox={min_lon},{min_lat},{max_lon},{max_lat}&".format(
         min_lon=min_bbox_bound[0],
         min_lat=min_bbox_bound[1],
