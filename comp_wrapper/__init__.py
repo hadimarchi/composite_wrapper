@@ -4,6 +4,7 @@ from .granule_fetch import fetch_granules
 from .gamma_manager import run_rtc_gamma
 from .composite_manager import run_make_composite
 from .log import logger
+from .cleanup import cleanup_gamma_products
 
 
 def run():
@@ -21,6 +22,9 @@ def run():
         cwd=os.getcwd(),
         download_location=download_location
     ))
+    if composite_options.cleanup:
+        logger.info("Removing gamma products")
+        cleanup_gamma_products(download_location)
 
 
 def test_run_composite():
