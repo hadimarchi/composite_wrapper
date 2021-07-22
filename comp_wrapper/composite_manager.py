@@ -10,10 +10,8 @@ def collect_polarized_products(products_path, polarization):
         polarization=polarization)
         ))
     products = [str(product) for product in products]
-    logger.info("{polarization} type products created".format(polarization=polarization))
-    logger.info(products)
-    logger.info("type of products is {type}".format(type=type(products)))
-    logger.info("type of product is {type}".format(type=type(products[0])))
+    logger.debug("{polarization} type products collected".format(polarization=polarization))
+    logger.debug(products)
     return products
 
 
@@ -31,11 +29,11 @@ def unzip_rtc_products(location):
 
 def run_make_composite(location):
     unzipped_products = unzip_rtc_products(location)
-    print(unzipped_products["vv_products"])
-    print(unzipped_products["vh_products"])
     if unzipped_products["vv_products"] != []:
+        logger.info("Making composite of VV products")
         make_composite("{location}/VV-composite".format(location=location),
                        unzipped_products["vv_products"])
     if unzipped_products["vh_products"] != []:
+        logger.info("Making composite of VH products")
         make_composite("{location}/VH-composite".format(location=location),
                        unzipped_products["vh_products"])

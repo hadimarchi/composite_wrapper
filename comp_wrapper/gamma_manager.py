@@ -6,14 +6,15 @@ from .log import logger
 
 def run_rtc_gamma(granules):
     hyp3 = HyP3(username=composite_options.username, password=composite_options.password)
-    logger.info("preparing gamma jobs")
+    logger.info("Running Gamma")
+    logger.debug("preparing gamma jobs")
     rtc_gamma_jobs = [hyp3.prepare_rtc_job(granule=granule, include_scattering_area=True) for granule in granules]
-    logger.info("jobs prepared")
+    logger.debug("jobs prepared")
     logger.info(rtc_gamma_jobs)
     rtc_gamma_batch = hyp3.submit_prepared_jobs(rtc_gamma_jobs)
-    logger.info("jobs submitted")
+    logger.debug("jobs submitted")
     rtc_gamma_batch = hyp3.watch(rtc_gamma_batch)
-    logger.info("jobs done")
+    logger.info("Gamma done")
     location = "{now}_min:{lon_lat_min}_max:{lon_lat_max}_granules:{granule_count}".format(
         now=datetime.now().isoformat(),
         lon_lat_min=composite_options.lon_lat_minimum,
