@@ -16,3 +16,7 @@ Wrapper for ASF's Local Resolution Weighted Composite python tool
 
   Or with or without environment activated:  
   `source run.sh`
+
+### Jupyter Notebook
+  To incorporate conda environment `composite_wrapper_env`
+  as a notebook kernel follow this guide: https://medium.com/@nrk25693/how-to-add-your-conda-environment-to-your-jupyter-notebook-in-just-4-steps-abeab8b8d084 

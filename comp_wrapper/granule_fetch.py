@@ -68,6 +68,7 @@ def get_fetch_url_polarization():
 
 def get_granule_names(granule_list):
     granule_names = []
+    logger.debug("Example granule has keys of {granule_keys}".format(granule_keys=granule_list[0].keys()))
     for granule in granule_list:
         name = granule["granuleName"]
         logger.info("Acquired granule {name}".format(name=name))
