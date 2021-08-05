@@ -1,23 +1,28 @@
 #Utility functions for composite_wrapper
 from .cmd_parser import composite_options
 from .log import logger
+from decimal import Decimal
 
 
 def check_longitude_validity(min_longitude, max_longitude):
+    lon_lower_bound = Decimal('-180')
+    lon_upper_bound = Decimal('180')
     if min_longitude > max_longitude:
         raise Exception("minimum longitude must be less than maximum longitude")
-    if min_longitude < -180.0 or min_longitude > 180.0:
+    if min_longitude < lon_lower_bound or min_longitude > lon_upper_bound:
         raise Exception("minimum longitude is not a valid value for longitude")
-    if max_longitude < -180.0 or max_longitude > 180.0:
+    if max_longitude < lon_lower_bound or max_longitude > lon_upper_bound:
         raise Exception("maximum longitude is not a valid value for longitude")
 
 
 def check_latitude_validity(min_latitude, max_latitude):
+    lat_lower_bound = Decimal('-90')
+    lat_upper_bound = Decimal('90')
     if min_latitude > max_latitude:
         raise Exception("minimum latitude must be less than maximum latitude")
-    if min_latitude < -90.0 or min_latitude > 90.0:
+    if min_latitude < lat_lower_bound or min_latitude > lat_upper_bound:
         raise Exception("minimum latitude is not a valid value for latitude")
-    if max_latitude < -90.0 or max_latitude > 90.0:
+    if max_latitude < lat_lower_bound or max_latitude > lat_upper_bound:
         raise Exception("maximum latitude is not a valid value for latitude")
 
 
