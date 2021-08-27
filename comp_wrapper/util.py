@@ -32,3 +32,10 @@ def check_bounding_box_validity():
     check_longitude_validity(min_longitude=lon_lat_min[0], max_longitude=lon_lat_max[0])
     check_latitude_validity(min_latitude=lon_lat_min[1], max_latitude=lon_lat_max[1])
     logger.debug("Bounding box is valid")
+
+
+def to_float(numerical_list):
+    float_list = []
+    for number in numerical_list:
+        float_list.append(float(number))
+    return float_list

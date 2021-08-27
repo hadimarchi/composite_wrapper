@@ -8,9 +8,9 @@ from .util import check_bounding_box_validity
 
 def fetch_granules():
     check_bounding_box_validity()
-    search_url = build_search_url()
+    fetch_url = build_fetch_url()
     logger.info("Searching for granules")
-    granules = requests.get(search_url).json()[0]
+    granules = requests.get(fetch_url).json()[0]
     granule_names = get_granule_names(granules)
 
     if granule_names == []:
@@ -19,7 +19,7 @@ def fetch_granules():
     return granule_names
 
 
-def build_search_url():
+def build_fetch_url():
     base_url = "https://api.daac.asf.alaska.edu/services/search/param?"
 
     fetch_url_bbox = get_fetch_url_bbox()

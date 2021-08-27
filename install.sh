@@ -1,3 +1,3 @@
 #!/bin/bash
-conda create -y --name composite_wrapper_env -c conda-forge --file env.txt
+conda create -f environment.yml
 chmod +x run.sh

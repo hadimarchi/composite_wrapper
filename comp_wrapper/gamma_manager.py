@@ -2,6 +2,7 @@ from hyp3_sdk import HyP3, Batch, Job
 from .cmd_parser import composite_options
 from datetime import datetime
 from .log import logger
+from .util import to_float
 
 
 def run_rtc_gamma(granules):
@@ -18,8 +19,8 @@ def run_rtc_gamma(granules):
     logger.info("Downloading Gamma products")
     download_location = "{now}_min:{lon_lat_min}_max:{lon_lat_max}_granules:{granule_count}".format(
         now=datetime.now().isoformat(),
-        lon_lat_min=composite_options.lon_lat_minimum,
-        lon_lat_max=composite_options.lon_lat_maximum,
+        lon_lat_min=to_float(composite_options.lon_lat_minimum),
+        lon_lat_max=to_float(composite_options.lon_lat_maximum),
         granule_count=len(granules)
     )
     rtc_gamma_batch.download_files(location=download_location)

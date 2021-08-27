@@ -25,11 +25,3 @@ def run():
     if composite_options.cleanup:
         logger.info("Removing gamma products")
         cleanup_gamma_products(download_location)
-
-
-def test_run_composite():
-    download_location = "2021-05-23T11:03:26.348173_min:[150.1, 65.0]_max:[150.2, 65.5]_granules:2"
-    run_make_composite("{cwd}/{download_location}".format(
-        cwd=os.getcwd(),
-        download_location=download_location
-    ))
